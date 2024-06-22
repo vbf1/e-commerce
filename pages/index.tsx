@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { EAppRoutes } from "../config/routes";
 
-export default function Router() {
+export default function LoginPage() {
   const session = useSession();
   const router = useRouter();
   const [email, setEmail] = useState("");

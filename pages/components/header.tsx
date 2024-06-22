@@ -3,10 +3,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useSession, signOut } from "next-auth/react";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
+import { EAppRoutes } from "../../config/routes";
 
 export default function Header() {
+  const router = useRouter();
   const { data } = useSession();
+  const session = useSession();
 
   const nameUppercase = data?.user?.name
     ? data.user.name
@@ -14,6 +18,10 @@ export default function Header() {
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ")
     : "";
+
+  useEffect(() => {
+    router.push(EAppRoutes.SIGN_IN);
+  }, [signOut]);
 
   return (
     <div className=" bg-white p-4  gap-2 shadow-md flex justify-between">
@@ -34,7 +42,7 @@ export default function Header() {
       </div>
 
       <Avatar>
-        <AvatarImage src={"https://github.com/vbf1.png"} />
+        <AvatarImage src={data?.user?.image || ""} />
       </Avatar>
     </div>
   );

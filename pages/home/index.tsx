@@ -3,6 +3,7 @@ import { Label } from "@/components/ui/label";
 
 import { PaginationDemo } from "../../components/pagination";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function HomePage() {
   const router = useRouter();
