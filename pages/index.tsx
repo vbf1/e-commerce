@@ -1,10 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { EAppRoutes } from "../config/routes";
 
 export default function Router() {
+  const session = useSession();
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,6 +18,12 @@ export default function Router() {
       router.push("/home");
     }
   };
+
+  useEffect(() => {
+    if (session.status === "authenticated") {
+      router.replace(EAppRoutes.HOME);
+    }
+  }, [session.status, router]);
 
   return (
     <div className="flex bg-slate-100 items-center justify-center h-screen">
@@ -39,8 +48,12 @@ export default function Router() {
               onChange={(e) => setPassword(e.target.value)}
             />
             <div className="flex gap-8 justify-between">
-              <Button type="submit" className="text-blue-700">
-                Criar conta
+              <Button
+                type="submit"
+                className="text-blue-700"
+                onClick={() => signIn("google")}
+              >
+                Google
               </Button>
               <Button
                 className="bg-blue-700 text-white hover:text-slate-200"

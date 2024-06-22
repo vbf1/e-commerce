@@ -1,12 +1,9 @@
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Undo2Icon } from "lucide-react";
 import { useRouter } from "next/router";
 import React from "react";
 
-export default function DetailsItemPage() {
+export default function DetailsPage() {
   const router = useRouter();
   const { name } = router.query;
 
@@ -16,23 +13,6 @@ export default function DetailsItemPage() {
 
   return (
     <div>
-      <div className=" bg-white p-4  gap-2 shadow-md flex justify-between">
-        <Label className="text-2xl font-bold">Home</Label>
-        <div className="grow" />
-        <div className="flex items-center gap-10">
-          <Input
-            className="w-96"
-            type="search"
-            placeholder="Pesquise um aeroporto"
-          />
-
-          <Label>Bem vindo, Victor</Label>
-        </div>
-
-        <Avatar>
-          <AvatarImage src={"https://github.com/vbf1.png"} />
-        </Avatar>
-      </div>
       <div className="grid grid-cols-12 py-8">
         <div className="col-span-1" />
         <div
@@ -60,7 +40,7 @@ export default function DetailsItemPage() {
             apenas de exemplo para que simule algum texto que venha a ser
             inserido nesse campo, descrevendo tal produto.
           </div>
-          <div className="h-2/6"/>
+          <div className="h-2/6" />
           <Button className="bg-blue-600 text-white w-full mt-auto">
             Adiciona ao carrinho
           </Button>
