@@ -1,9 +1,7 @@
 import { trpc } from "../../utils/trpc";
 import { Label } from "@/components/ui/label";
-
 import { PaginationDemo } from "../../components/pagination";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 export default function HomePage() {
   const router = useRouter();
@@ -33,17 +31,18 @@ export default function HomePage() {
 
         <div className="col-span-1" />
       </div>
+
       <div className="grid grid-cols-12 py-12">
         <div className="col-span-1" />
         <div className="col-span-10">
           <div className="grid grid-cols-10 gap-10">
-            {aiports.data?.map((aiport) => {
+            {aiports.data?.map((aiport: any) => {
               return (
                 <div
                   key={aiport.id}
                   className="col-span-2 cursor-pointer"
                   onClick={() => getDetailsProduct(aiport.name)}
-                  onKeyDown={(e) =>
+                  onKeyPress={(e) =>
                     e.key === "Enter" && getDetailsProduct(aiport.name)
                   }
                 >

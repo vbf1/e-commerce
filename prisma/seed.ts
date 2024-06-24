@@ -1,5 +1,8 @@
 import { PrismaClient } from "@prisma/client";
+const fs = require("fs");
 const prisma = new PrismaClient();
+
+// const imageBuffer = fs.readFileSync("path/to/image.jpg");
 
 const list = [
   {
