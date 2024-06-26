@@ -2,6 +2,7 @@ import { trpc } from "../../utils/trpc";
 import { Label } from "@/components/ui/label";
 import { PaginationDemo } from "../../components/pagination";
 import { useRouter } from "next/router";
+import { Button } from "@/components/ui/button";
 
 export default function HomePage() {
   const router = useRouter();
@@ -11,11 +12,24 @@ export default function HomePage() {
     router.push({ pathname: "/home/details-page", query: { name: aiport } });
   };
 
+  const handlePayment = async () => {
+    const response = await fetch("/api/create-checkout-session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const { url } = await response.json();
+    router.push(url);
+  };
+
   return (
     <div className="">
       <div className="grid grid-cols-12 py-8">
         <div className="col-span-1" />
         <div className="flex col-span-10 justify-between">
+          <Button onClick={handlePayment}>Clique aqui para Viajar</Button>
           <div className="flex gap-6 col-span-7">
             <div className="font-bold border-b-2 border-orange-600 cursor-pointer">
               TODOS OS PRODUTOS
