@@ -1,16 +1,17 @@
-import { trpc } from "../../utils/trpc";
-import { Label } from "@/components/ui/label";
-import { PaginationDemo } from "../../components/pagination";
-import { useRouter } from "next/router";
+"use client";
+
 import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Pagination } from "@/components/ui/pagination";
+import { trpc } from "@/utils/trpc";
+
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
   const router = useRouter();
   const aiports = trpc.aiport.aiportData.useQuery();
 
-  const getDetailsProduct = (aiport: string) => {
-    router.push({ pathname: "/home/details-page", query: { name: aiport } });
-  };
+  const getDetailsProduct = (aiport: string) => {};
 
   const handlePayment = async () => {
     const response = await fetch("/api/create-checkout-session", {
@@ -39,7 +40,7 @@ export default function HomePage() {
           </div>
 
           <div>
-            <PaginationDemo />
+            <Pagination />
           </div>
         </div>
 

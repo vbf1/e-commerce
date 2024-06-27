@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Undo2Icon } from "lucide-react";
 import { useRouter } from "next/router";

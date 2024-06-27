@@ -1,23 +1,16 @@
+"use client";
+
+import { EAppRoutes } from "@/config/routes";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useSession, signIn, signOut } from "next-auth/react";
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import { EAppRoutes } from "../config/routes";
+import { useSession, signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function LoginPage() {
   const session = useSession();
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleClick = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (email === "admin" && password === "admin") {
-      router.push("/home");
-    }
-  };
 
   useEffect(() => {
     if (session.status === "authenticated") {
@@ -34,19 +27,9 @@ export default function LoginPage() {
             <Label className="">Digite seu email e senha para acessar</Label>
           </div>
 
-          <form onSubmit={handleClick} className="space-y-6 ">
-            <Input
-              type="text"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+          <form onSubmit={() => {}} className="space-y-6 ">
+            <Input type="text" placeholder="Email" />
+            <Input type="password" placeholder="Password" />
             <div className="flex gap-8 justify-between">
               <Button
                 type="submit"
